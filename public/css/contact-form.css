@@ -1,0 +1,106 @@
+
+/* body {
+    display: flex;
+    justify-content: space-between;
+    margin: 0rem 0rem 0rem 0rem;
+    padding: 2rem 1.5rem;
+    background-image: url(assets/miles-burke-idhx-MOCDSk-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
+  } */
+
+  .contact-form {
+    max-width: 400px;
+    border-radius: 2rem;
+    margin-top: 4.5rem;
+    margin-left: 40rem;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid black;
+    padding: 3em;
+    height: 70%;
+    opacity: 0.8;
+    backdrop-filter: blur(10px);
+    -webkit-box-shadow: 14px 0px 50px 36px rgba(0,0,0,0.58);
+-moz-box-shadow: 14px 0px 50px 36px rgba(0,0,0,0.58);
+box-shadow: 14px 0px 50px 36px rgba(0,0,0,0.58);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  input {
+    height: 3rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 1px 0px 80px 5px rgb(135, 220, 112) inset;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border-radius: 2rem;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 1px 0px 80px 5px rgb(135, 220, 112) inset;
+  }
+  
+
+  .pushable {
+    justify-content: center;
+    background: hsl(118, 46%, 41%);
+    width: 50%;
+    border-radius: 2rem;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline-offset: 4px;
+  }
+  .front {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 2rem;
+    font-size: 1.25rem;
+    background: hsl(122, 56%, 47%);
+    color: white;
+    transform: translateY(-6px);
+  }
+
+  .pushable:active .front {
+    transform: translateY(-2px);
+  }
+
+  input[type="submit"],
+  input[type="reset"] {
+    background-color: #3be440;
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 2rem;
+    background: transparent linear-gradient(276deg,rgba(7, 132, 3, 0.898),#66bf5a) 0 0 no-repeat padding-box;
+  }
+  
+  input[type="submit"]:hover,
+  input[type="reset"]:hover {
+    background-color: #39de42;
+    box-shadow: 1px 5px 4px 2px rgb(165, 164, 164);
+  }
