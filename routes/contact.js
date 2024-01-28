@@ -1,11 +1,8 @@
 const express = require('express')
-const path = require('path')
-const rootDir = require('../utils/path.js')
+const contactController = require('../controller/contact.js')
 
 const router = express.Router()
 
-router.get('/',(req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'contact-form.html') )
-})
+router.get('/', contactController.getContactPage)
 
 module.exports = router
