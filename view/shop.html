@@ -13,6 +13,7 @@
                 <li class="main-header__item"><a class="active" href="/">Shop</a></li>
                 <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
                 <li class="main-header__item"><a href="/contact">Contact Us</a></li>
+                <li class="main-header__item"><a href="/cart">Cart</a></li>
             </ul>
         </nav>
     </header>
@@ -38,6 +39,7 @@
               listItem.innerHTML = `
                         <strong>${product.title}</strong>
                         <button onclick="redirectToProductDetails(${product.id})">View Details</button>
+                        <button onclick="addTocart(${product.id})">Add to cart</button>
                 `;
               productList.appendChild(listItem);
             });
@@ -49,6 +51,15 @@
         function redirectToProductDetails(productId) {
             // Assuming you have a product-details.html page
             window.location.href = `/products/${productId}`;
+        }
+
+        function addTocart(productId) {
+            fetch(`http://localhost:4000/cart/add?productId=${productId}`, {method: 'POST'})
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+          })
         }
 
     </script>

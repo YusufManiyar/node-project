@@ -1,0 +1,76 @@
+<!-- cart.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="../public/css/cart.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Shop</a></li>
+                <li class="main-header__item"><a href="/admin/add-product">Add Product</a></li>
+                <li class="main-header__item"><a href="/contact">Contact Us</a></li>
+                <li class="main-header__item"><a class="active" href="/cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Shopping Cart</h1>
+    <ul id="cartList"></ul>
+
+    <script>
+        // Function to fetch and display the cart contents
+        async function displayCart() {
+            try {
+                const response = await fetch('http://localhost:4000/cart/products');
+                const cartItems = await response.json();
+                const cartList = document.getElementById('cartList');
+
+                // Clear existing content
+                cartList.innerHTML = '';
+                // Loop through each item in the cart
+                for(let item of cartItems) {
+
+                    const listItem = document.createElement('li');
+                    const response = await fetch(`http://localhost:4000/products/${item.productId}`);
+                    const product = await response.json()
+                    console.log(product)
+                    listItem.innerHTML = `
+                        <span> name : ${product.title}</span>
+                        <button onclick="removeFromCart(${item.productId})">Remove</button>
+                    `;
+                    cartList.appendChild(listItem);
+                };
+            } catch (error) {
+                console.error('Error fetching cart:', error);
+            }
+        }
+
+        // Function to remove a product from the cart
+        async function removeFromCart(productId) {
+            try {
+                await fetch('http://localhost:4000/cart/remove', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ productId }),
+                });
+
+                // Update the displayed cart after removal
+                displayCart();
+            } catch (error) {
+                console.error('Error removing from cart:', error);
+            }
+        }
+
+        // Display the cart when the page loads
+        displayCart();
+    </script>
+</body>
+</html>
