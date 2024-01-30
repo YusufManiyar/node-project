@@ -17,5 +17,12 @@ module.exports = {
     getProducts : (req, res, next) => {
         const products = productsModel.getAllProducts()
         res.send(products)
-    }
+    },
+
+    getProductById : (req, res, next) => {
+        const id = req.url.split('/')[2]
+        const product = productsModel.getProductById(id)
+        res.json(product)
+    },
+
 }

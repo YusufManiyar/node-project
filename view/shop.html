@@ -35,13 +35,22 @@
             const productList = document.getElementById('productList');
             products.forEach(product => {
               const listItem = document.createElement('li');
-              listItem.textContent = product.title;
+              listItem.innerHTML = `
+                        <strong>${product.title}</strong>
+                        <button onclick="redirectToProductDetails(${product.id})">View Details</button>
+                `;
               productList.appendChild(listItem);
             });
           })
           .catch(error => {
             console.error('Error fetching product data:', error);
           });
+
+        function redirectToProductDetails(productId) {
+            // Assuming you have a product-details.html page
+            window.location.href = `/products/${productId}`;
+        }
+
     </script>
 </body>
 

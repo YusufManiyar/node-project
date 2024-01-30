@@ -22,6 +22,11 @@ module.exports = {
     return readProductsFromFile();
   },
 
+  getProductById : (id) => {
+    const products = readProductsFromFile();
+    return products.find(obj => obj.id === id)
+  },
+
   addProduct: (product) => {
     const products = readProductsFromFile();
     products.push(product);
