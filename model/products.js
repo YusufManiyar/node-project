@@ -28,9 +28,25 @@ module.exports = {
   },
 
   addProduct: (product) => {
-    const products = readProductsFromFile();
-    products.push(product);
-    writeProductsToFile(products);
+    try {
+      const products = readProductsFromFile();
+      products.push(product);
+      writeProductsToFile(products);
+    }
+    catch(error) {
+      console.log(error)
+    }
+  },
+
+  deleteProductById: (id) => {
+    try {
+      let products = readProductsFromFile();
+      products = products.filter(product => product.id !== id);
+      writeProductsToFile(products);
+    }
+    catch(error) {
+      console.log(error)
+    }
   },
 };
 
