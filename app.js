@@ -6,12 +6,15 @@ const contactRouter = require('./routes/contact.js')
 const successRouter = require('./routes/success.js')
 const cartRouter = require('./routes/cart.js')
 const errorController = require('./controller/error.js')
+const db = require('./utils/database.js')
 const path = require('path')
 
 const app = express()
 app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 app.use('/',shopRouter)
 app.use('/admin',adminRouter)
