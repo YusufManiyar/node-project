@@ -1,37 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-
-const dataFilePath = path.join(__dirname, '..', 'data', 'products.json');
-
-const readProductsFromFile = () => {
-  try {
-    const fileContent = fs.readFileSync(dataFilePath);
-    return JSON.parse(fileContent);
-  } catch (error) {
-    return [];
-  }
-};
-
-const writeProductsToFile = (products) => {
-  const data = JSON.stringify(products, null, 2);
-  fs.writeFileSync(dataFilePath, data);
-};
+const db = require('../utils/database.js')
 
 module.exports = {
   getAllProducts: () => {
-    return readProductsFromFile();
+    return db.execute('SELECT * FROM Product')
   },
 
   getProductById : (id) => {
-    const products = readProductsFromFile();
-    return products.find(obj => obj.id === id)
+    return db.execute('SELECT * FROM Product WHERE _id=?', [id])
   },
 
   addProduct: (product) => {
     try {
-      const products = readProductsFromFile();
-      products.push(product);
-      writeProductsToFile(products);
+      return db.execute('INSERT INTO Product (title) VALUES (?)', [product.title])
     }
     catch(error) {
       console.log(error)
@@ -40,9 +20,7 @@ module.exports = {
 
   deleteProductById: (id) => {
     try {
-      let products = readProductsFromFile();
-      products = products.filter(product => product.id !== id);
-      writeProductsToFile(products);
+      return db.execute('DELETE FROM Product WHERE _id=?', [id])
     }
     catch(error) {
       console.log(error)
