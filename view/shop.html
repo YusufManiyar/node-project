@@ -38,9 +38,9 @@
               const listItem = document.createElement('li');
               listItem.innerHTML = `
                         <strong>${product.title}</strong>
-                        <button onclick="redirectToProductDetails(${product._id})">View Details</button>
-                        <button onclick="addTocart(${product._id})">Add to cart</button>
-                        <button onclick="removeProduct(${product._id})">Delete</button>
+                        <button onclick="redirectToProductDetails(${product.id})">View Details</button>
+                        <button onclick="addTocart(${product.id})">Add to cart</button>
+                        <button onclick="removeProduct(${product.id})">Delete</button>
                 `;
               productList.appendChild(listItem);
             });

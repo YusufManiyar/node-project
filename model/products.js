@@ -1,30 +1,15 @@
-const db = require('../utils/database.js')
+const Sequelize = require('sequelize');
 
-module.exports = {
-  getAllProducts: () => {
-    return db.execute('SELECT * FROM Product')
+const sequelize = require('../utils/database');
+
+const Product = sequelize.define('product', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
   },
+  title: Sequelize.STRING,
+});
 
-  getProductById : (id) => {
-    return db.execute('SELECT * FROM Product WHERE _id=?', [id])
-  },
-
-  addProduct: (product) => {
-    try {
-      return db.execute('INSERT INTO Product (title) VALUES (?)', [product.title])
-    }
-    catch(error) {
-      console.log(error)
-    }
-  },
-
-  deleteProductById: (id) => {
-    try {
-      return db.execute('DELETE FROM Product WHERE _id=?', [id])
-    }
-    catch(error) {
-      console.log(error)
-    }
-  },
-};
-
+module.exports = Product;

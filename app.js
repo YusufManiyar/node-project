@@ -6,6 +6,7 @@ const contactRouter = require('./routes/contact.js')
 const successRouter = require('./routes/success.js')
 const cartRouter = require('./routes/cart.js')
 const errorController = require('./controller/error.js')
+const sequelize = require('./utils/database.js')
 const path = require('path')
 
 const app = express()
@@ -23,4 +24,11 @@ app.use('/cart',cartRouter)
 
 app.use(errorController.pageNotFound)
 
-app.listen(4000)
+sequelize
+.sync()
+.then((result) => {
+    // console.log(result)
+    app.listen(4000)
+}).catch((err) => {
+    console.log(err)
+})
