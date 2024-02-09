@@ -9,9 +9,17 @@ module.exports = {
     addProduct : async (req, res, next) => {
         try {
             const { title } = req.body;
-            const newProduct = productsModel.build({ title });
-            await newProduct.save()
-            res.redirect('/')
+            req.user.createProduct({
+                title: title
+              })
+              .then(result => {
+                // console.log(result);
+                console.log('Created Product');
+                res.redirect('/');
+              })
+              .catch(err => {
+                console.log(err);
+              });
         }
         catch(error) {
             console.log(error)
